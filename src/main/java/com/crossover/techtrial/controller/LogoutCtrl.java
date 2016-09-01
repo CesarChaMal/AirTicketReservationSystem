@@ -1,5 +1,8 @@
 package com.crossover.techtrial.controller;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,19 +10,22 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.crossover.techtrial.airline.context.LoginService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 @Controller
-@RequestMapping(value = "/")
-//@SessionAttributes("game_id")
-public class WelcomeCtrl {
+@RequestMapping(value = "/logout.do")
+public class LogoutCtrl {
 
-	private static final Logger log = Logger.getLogger(WelcomeCtrl.class);
+	private static final Logger log = Logger.getLogger(LogoutCtrl.class);
+
+	private LoginService service = new LoginService();
 	
 	private Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
@@ -46,12 +52,13 @@ public class WelcomeCtrl {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String welcome(HttpServletRequest request, HttpServletResponse response) {
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
+		request.getSession().invalidate();
 		
-		return "welcome";
+		return "login";
 	}
-	
+
 }

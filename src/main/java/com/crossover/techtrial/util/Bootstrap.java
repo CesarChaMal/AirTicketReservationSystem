@@ -51,8 +51,8 @@ public class Bootstrap implements InitializingBean,
 	@Value("${useDBType}")
 	private String schemaType;
 	
-    @Value("${${airticket.env}.AirTicket.WelcomeCtrl}")
-    private String welcomeCtrl;
+    @Value("${${airticket.env}.AirTicket.LoginCtrl}")
+    private String loginCtrl;
 	
 	@Value("${JavaProcessBuilder.HeapMemory}")
 	private String JavaProcessHeapMemory;
@@ -74,7 +74,7 @@ public class Bootstrap implements InitializingBean,
         CommonConstants.ENV = env;
         CommonConstants.SCHEMA_TYPE = schemaType;
         
-        CommonConstants.WELCOME_CTRL = welcomeCtrl;
+        CommonConstants.LOGIN_CTRL = loginCtrl;
         
         CommonConstants.JAVAPROCESS_HEAPMEMORY = JavaProcessHeapMemory;
         CommonConstants.JAVAPROCESS_NONHEAPMEMORY = JavaProcessNonHeapMemory;

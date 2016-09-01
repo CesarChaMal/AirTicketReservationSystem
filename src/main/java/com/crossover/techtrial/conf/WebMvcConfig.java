@@ -5,14 +5,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.interceptor.TransactionInterceptor;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.crossover.techtrial.Application;
+import com.crossover.techtrial.interceptor.LoginInterceptor;
 
 @Configuration
 @ComponentScan(basePackages = { "com.crossover.controller" })
@@ -53,6 +56,14 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	 // see https://stackoverflow.com/questions/27381781/java-spring-boot-how-to-map-my-my-app-root-to-index-html
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("redirect:/index.html");
+//		registry.addViewController("/").setViewName("redirect:/index.html");
+		registry.addViewController("/").setViewName("redirect:/login.do");
 	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+//	    registry.addInterceptor(new LogingInterceptor());
+	    registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/*.do");
+	} 
+	
 }

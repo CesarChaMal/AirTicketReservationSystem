@@ -68,7 +68,7 @@ public class HttpRequest implements HttpRequestCallback {
 		urlpath = String.format(baseurlFormat, game_id.trim());
 		
 //		baseurl = Environment.getProperty("XLSpaceShip.RequestSvc");
-		baseurl = CommonConstants.WELCOME_CTRL;
+		baseurl = CommonConstants.LOGIN_CTRL;
 		
 		if(baseurl != null) {
 			this.getRequest(type);	
@@ -85,7 +85,7 @@ public class HttpRequest implements HttpRequestCallback {
 		urlpath = String.format(baseurlFormat, game_id.trim());
 		
 //		baseurl = Environment.getProperty("XLSpaceShip.RequestSvc");
-		baseurl = CommonConstants.WELCOME_CTRL;
+		baseurl = CommonConstants.LOGIN_CTRL;
 		
 		if(baseurl != null) {
 			this.getRequest(type);	
@@ -101,7 +101,7 @@ public class HttpRequest implements HttpRequestCallback {
 		this.json = json;
 		
 //		baseurl = Environment.getProperty("XLSpaceShip.RequestSvc");
-		baseurl = CommonConstants.WELCOME_CTRL;
+		baseurl = CommonConstants.LOGIN_CTRL;
 		
 		if(baseurl != null) {
 			this.getRequest(type);	
@@ -118,7 +118,7 @@ public class HttpRequest implements HttpRequestCallback {
 		urlpath = String.format(baseurlFormat, game_id.trim());
 		
 //		baseurl = Environment.getProperty("XLSpaceShip.RequestSvc");
-		baseurl = CommonConstants.WELCOME_CTRL;
+		baseurl = CommonConstants.LOGIN_CTRL;
 		
 		if(baseurl != null) {
 			this.getRequest(type);	

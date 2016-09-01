@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 public class CommonConstants {
 	public static String ENV = "dev";
 	public static String SCHEMA_TYPE = "mysql";	
-	public static String WELCOME_CTRL = "";	
+	public static String LOGIN_CTRL = "";	
     public static String JAVAPROCESS_HEAPMEMORY = "128M";
     public static String JAVAPROCESS_NONHEAPMEMORY = "90M";
 }
