@@ -1,0 +1,123 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE")
+        //classpath("org.springframework.boot:spring-boot-gradle-plugin:${project.bootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+          parent { 
+            groupId 'org.springframework.boot'
+            artifactId 'spring-boot-starter-parent'
+            //version "${project.bootVersion}"
+            version "1.0.2.RELEASE"
+          }
+        }
+    }
+}
+jar {
+    baseName = 'Air-Ticket-Reservation-System'
+    version =  '1.0.1'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+}
+
+task sourceSetProperties << {
+	sourceSets {
+	    main {
+	        println "java.srcDirs = ${java.srcDirs}"
+	        println "resources.srcDirs = ${resources.srcDirs}"
+	        println "java.files = ${java.files.name}"
+	        println "allJava.files = ${allJava.files.name}"
+	        println "resources.files = ${resources.files.name}"
+	        println "allSource.files = ${allSource.files.name}"
+	        println "output.classesDir = ${output.classesDir}"
+	        println "output.resourcesDir = ${output.resourcesDir}"
+	        println "output.files = ${output.files}"
+	    }
+	}
+}
+
+mainClassName = 'com.xlspaceship.Application'
+
+sourceSets {
+	main{
+	
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+            srcDir 'src/main/webapp'
+            srcDir 'src/conf/properties'
+        }
+    }
+
+    test {
+        java {
+            srcDir 'src/test/java'
+        }
+        resources {
+            srcDir 'src/test/resources'
+        }
+    }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.hibernate:hibernate-validator")
+    compile("org.apache.tomcat.embed:tomcat-embed-el")
+    compile("com.google.code.gson:gson:2.2.4")
+	compile("org.jasypt:jasypt:1.7")
+	compile("org.mockito:mockito-all:1.9.5")
+	compile("com.fasterxml.jackson.core:jackson-core:2.2.1")
+	compile("com.fasterxml.jackson.core:jackson-databind:2.2.1")
+	compile("org.springframework:spring-test:3.2.3.RELEASE")
+	compile("junit:junit:4.12")
+	compile("com.github.springtestdbunit:spring-test-dbunit:1.0.0")
+	compile("com.jayway.jsonpath:json-path:0.8.1")
+	compile("com.jayway.jsonpath:json-path-assert:0.8.1")
+	compile("javax.ws.rs:jsr311-api:1.1.1")
+	compile("com.google.guava:guava:19.0")
+	compile group: 'com.google.guava', name: 'guava', version: '19.0'
+	compile group: 'javax.servlet.jsp.jstl', name: 'javax.servlet.jsp.jstl-api', version: '1.2.1'
+	compile group: 'taglibs', name: 'standard', version: '1.1.2'
+	compile group: 'com.sun.jersey', name: 'jersey-client', version: '1.9.1'
+	compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
+	compile group: 'org.codehaus.jettison', name: 'jettison', version: '1.1'
+	compile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
+	compile group: 'org.webjars', name: 'bootstrap', version: '3.3.5'
+	compile group: 'org.webjars', name: 'jquery', version: '2.2.4'
+	compile group: 'org.webjars', name: 'angularjs', version: '1.5.5'
+	compile group: 'org.webjars', name: 'three.js', version: 'r77'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
+	compile group: 'org.springframework', name: 'spring-jdbc', version: '3.0.5.RELEASE'
+	runtime("javax.servlet:jstl:1.2")
+    runtime("org.apache.tomcat.embed:tomcat-embed-jasper")
+    testCompile("junit:junit")
+	testCompile("org.springframework:spring-test:3.2.3.RELEASE")
+	testCompile("org.dbunit:dbunit:2.4.8")
+ }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
+configurations.all {
+    exclude module: 'slf4j-log4j12'
+}
