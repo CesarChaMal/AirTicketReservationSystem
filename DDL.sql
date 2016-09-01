@@ -7,13 +7,16 @@ USE AirTicketReservationSystem;
 -- DROP TABLE IF EXISTS User;
 CREATE TABLE User (
 	user_id int(8) NOT NULL auto_increment,
-	name varchar(60) NOT NULL,  
+	name varchar(20) NOT NULL,  
 	username varchar(20) NOT NULL,  
-	password varchar(20) NOT NULL,  
+	password varchar(60) NOT NULL,  
 	rol_id int(8) NOT NULL,
     active binary(1) NOT NULL default '1',
 	CONSTRAINT cliente_pkey PRIMARY KEY (user_id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+ALTER TABLE User
+	MODIFY COLUMN password VARCHAR(60);
 
 -- DROP TABLE IF EXISTS Roles;
 CREATE TABLE Roles (
