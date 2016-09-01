@@ -26,65 +26,17 @@ java -jar xlspaceship-1.0.1.jar
 gradle bootRun
 mvn spring-boot:run
 
-mvn spring-boot:run -Dlog.dir="C:/springsource/ws_xl_spaceship/xl_spaceship_springboot/logs/" -Dxlspaceship.env="pro" -Dstatic.path="C:/springsource/ws_xl_spaceship/xl_spaceship_springboot/" -Drun.jvmArguments="-Dserver.port=9090" 
+mvn spring-boot:run -Dlog.dir="C:/springsource/workspaces/ws_air_ticket_reservation_system/AirTicketReservationSystem/logs/" -Dxlspaceship.env="pro" -Dstatic.path="C:/springsource/workspaces/ws_air_ticket_reservation_system/AirTicketReservationSystem/" -Drun.jvmArguments="-Dserver.port=9090" 
 
 Spring Boot
 
-POST
-Content-Type: application/json
-http://localhost:8080/xl-spaceship/protocol/game/new
-{"user_id": "xebialabs-1","full_name": "XebiaLabs Opponent","spaceship_protocol": {"hostname": "127.0.0.1","port": "9001"}}
-
-optional rules
-
-{"user_id": "xebialabs-1","full_name": "XebiaLabs Opponent",	"spaceship_protocol": {"hostname": "127.0.0.1","port": "9001"}}
-
-PUT
-Content-Type: application/json
-http://localhost:8080/xl-spaceship/protocol/game/match-1
-{"salvo":["0x0", "8x4", "DxA", "AxA", "7xF"]}
-
-PUT
-Content-Type: application/json
-http://localhost:8080/xl-spaceship/user/game/match-1/fire
-{"salvo":["0x0", "8x4", "DxA", "AxA", "7xF"]}
-
-GET
-Content-Type: application/json
-http://localhost:8080/xl-spaceship/user/game/match-1
-
-GET
-Content-Type: application/json
-http://localhost:8080/xl-spaceship/user/cesar
-
-POST
-Content-Type: application/json
-http://localhost:8080/xl-spaceship/user/game/match-1/auto
-{"salvo":["0x0", "8x4", "DxA", "AxA", "7xF"]}
-
-POST
-Content-Type: application/json
-http://localhost:8080/xl-spaceship/user/game/match-1/simulate
-{"salvo":["0x0", "8x4", "DxA", "AxA", "7xF"]}
 
 
 Spring MVC
 
 GET
 Content-Type: text/html
-http://localhost:8080/player1/{game_id}
-
-GET
-Content-Type: text/html
-http://localhost:8080/player2/{game_id}
-
-GET
-Content-Type: text/html
-http://localhost:8080/game/{game_id}
-
-GET
-Content-Type: text/html
-http://localhost:8080/newGame
+http://localhost:8080/
 
 kill instance
 

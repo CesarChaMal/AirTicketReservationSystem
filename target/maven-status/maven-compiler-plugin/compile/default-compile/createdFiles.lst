@@ -1,10 +1,2 @@
-com\crossover\techtrial\Application$1.class
-com\crossover\techtrial\conf\PropertyConfig.class
-com\crossover\techtrial\conf\AppInitializer.class
-com\crossover\techtrial\rest\CustomerServiceAgentSvc.class
-com\crossover\techtrial\conf\AppConfig.class
-com\crossover\techtrial\conf\WebMvcConfig.class
-com\crossover\techtrial\Application.class
-com\crossover\techtrial\util\Environment$2.class
-com\crossover\techtrial\controller\Welcome.class
 com\crossover\techtrial\rest\helpers\HttpRequest$1.class
+com\crossover\techtrial\util\Environment$2.class

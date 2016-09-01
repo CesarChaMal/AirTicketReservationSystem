@@ -108,6 +108,9 @@ dependencies {
 	compile group: 'org.webjars', name: 'three.js', version: 'r77'
 	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
 	compile group: 'org.springframework', name: 'spring-jdbc', version: '3.0.5.RELEASE'
+	compile group: 'org.springframework', name: 'spring-orm', version: '3.0.5.RELEASE'
+	compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+	compile group: 'commons-pool', name: 'commons-pool', version: '1.6'
 	runtime("javax.servlet:jstl:1.2")
     runtime("org.apache.tomcat.embed:tomcat-embed-jasper")
     testCompile("junit:junit")

@@ -8,7 +8,8 @@ import com.crossover.techtrial.util.Bootstrap;
 
 
 @Configuration
-@Import( {PropertyConfig.class} )
+@Import( {PropertyConfig.class, MySQLConfig.class} )
+//@Import( {PropertyConfig.class} )
 public class AppConfig {
     
     @Bean

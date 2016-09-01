@@ -12,9 +12,9 @@ public enum Environment {
 
     private static final Logger log = Logger.getLogger(Environment.class);
     
-    public static String KEY = "xlspaceship.env";
+    public static String KEY = "airticket.env";
 
-    public static final String DEFAULT = "xlspaceship.env.default";
+    public static final String DEFAULT = "airticket.env.default";
     
     private static final String PRODUCTION_ENV_SHORT_NAME          = "prod";
     private static final String DEVELOPMENT_ENVIRONMENT_SHORT_NAME = "dev";
