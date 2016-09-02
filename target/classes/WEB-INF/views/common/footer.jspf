@@ -9,7 +9,6 @@
     <script src="/webjars/angularjs/1.5.5/angular.min.js"></script>
     <script src="/webjars/angularjs/1.5.5/angular-route.js"></script>
     <script src="/resources/js/libs/formValidation.js"></script>
-    <script src="/resources/js/libs/bootstrapFormValidation.js"></script>
     <script src="/resources/js/libs/scripts.js"></script>
 </body>
 </html>

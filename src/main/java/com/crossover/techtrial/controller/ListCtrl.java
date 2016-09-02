@@ -61,22 +61,6 @@ public class ListCtrl {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		
-		Flights test1 = new Flights() {
-            String name = "Flight 01";
-            String destination = "nowwhere";
-        };
-        Flights test2 = new Flights() {
-        	String name = "Flight 02";
-        	String destination = "nowwhere";
-        };
-        
-		List<Flights> flights= new ArrayList<Flights>();
-		
-		flights.add(test1);
-		flights.add(test2);
-
-		model.put("flights", flights);
-
 		return "list-flights";
 	}
 	

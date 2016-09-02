@@ -40,7 +40,8 @@ Spring MVC
 
 GET
 Content-Type: text/html
-http://localhost:8080/
+http://localhost:8080/login.do
+
 
 kill instance
 

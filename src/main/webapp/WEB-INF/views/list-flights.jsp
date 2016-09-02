@@ -5,18 +5,22 @@
 	<H1>Welcome ${LOGGEDIN_USER}</H1>
 
 	<table class="table table-striped">
-		<caption>Your Flights are</caption>
+		<%-- <caption><spring:message code="app"/></caption> --%>
+		<caption>${app}</caption>
 		<thead>
-			<th>Description</th>
-			<th>Destination</th>
-			<th>Actions</th>
+			<tr>
+				<th>Description</th>
+				<th>Target Date</th>
+				<th>Actions</th>
+				<th></th>
+			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${flights}" var="flight">
+			<c:forEach items="${flights}" var="f">
 				<tr>
-					<td>${flight.name}</td>
-					<td>${flight.destination}</td>
-					<td>&nbsp;&nbsp;<a class="btn btn-danger" href="/delete-flight.do?todo=${flight.name}&destination=${flight.destination}">Delete</a></td>
+					<td>${f.name}</td>
+					<td>${f.destination}</td>
+					<td>&nbsp;&nbsp;<a class="btn btn-danger" href="/delete-flight.do?flight=${f.name}&destination=${f.destination}">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
