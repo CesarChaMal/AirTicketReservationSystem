@@ -8,7 +8,7 @@ UNION ALL
 INSERT INTO user(name, username, password, rol_id)
 	SELECT 'Cesar Chavez', 'admin', 'ge9aFH4nd5sxpkctQZ7apA==', 2
 UNION ALL
-	SELECT 'Cesar Manuel', 'user', 'ge9aFH4nd5sxpkctQZ7apA==', 1
+	SELECT 'Cesar Manuel', 'user', 'ge9aFH4nd5sxpkctQZ7apA==', 1;
 
 INSERT INTO SocialNetWork(name)
 	SELECT 'Google'

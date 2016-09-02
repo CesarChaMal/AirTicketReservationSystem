@@ -1,6 +1,8 @@
 package com.crossover.techtrial.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -51,12 +53,30 @@ public class ListCtrl {
 		this.wctx = wctx;
 	}
 	
+	
+	public class Flights {String name; String destination;}
 	@RequestMapping(method = RequestMethod.GET)
-	public String welcome(HttpServletRequest request, HttpServletResponse response) {
+	public String listFlights(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 		
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		
+		Flights test1 = new Flights() {
+            String name = "Flight 01";
+            String destination = "nowwhere";
+        };
+        Flights test2 = new Flights() {
+        	String name = "Flight 02";
+        	String destination = "nowwhere";
+        };
+        
+		List<Flights> flights= new ArrayList<Flights>();
+		
+		flights.add(test1);
+		flights.add(test2);
+
+		model.put("flights", flights);
+
 		return "list-flights";
 	}
 	

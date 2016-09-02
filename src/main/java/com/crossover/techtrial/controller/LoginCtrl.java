@@ -72,12 +72,9 @@ public class LoginCtrl {
 
 		if (isValidUser) {
 			request.getSession().setAttribute("LOGGEDIN_USER", name);
-//			response.sendRedirect("/list-todos.do");
 			return "list-flights";
 		} else {
 			request.setAttribute("errorMessage", "Invalid Credentials!!");
-//			request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
-//			request.getRequestDispatcher("/login.do").forward(request, response);
 			return "login";
 		}
 	}
