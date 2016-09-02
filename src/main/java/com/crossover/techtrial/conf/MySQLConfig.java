@@ -1,7 +1,5 @@
 package com.crossover.techtrial.conf;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
-//@Configuration
+@Configuration
 public class MySQLConfig {
     private static final Logger log = Logger.getLogger(MySQLConfig.class);
 
@@ -45,7 +43,11 @@ public class MySQLConfig {
         ds.setDriverClassName(mysqlDriver);
         ds.setUrl(mysqlURL);
         ds.setUsername(mysqlUsername);
-        ds.setPassword(sqlServerPassword);
+//        String passEnc= sqlServerPassword;
+//        EncryptionDecryption.getInstance();
+//        ds.setPassword(EncryptionDecryption.decrypt2(passEnc));
+//        ds.setPassword(sqlServerPassword);
+        ds.setPassword("pass");
         log.debug(mysqlURL);
 
         // DBCP specific settings

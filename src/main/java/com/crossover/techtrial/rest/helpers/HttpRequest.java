@@ -34,124 +34,85 @@ public class HttpRequest implements HttpRequestCallback {
 	private String urlpath = ""; // service path
 	private String querystring = ""; //query string for the request
 	private String json = ""; //json for the request
-
-	public HttpRequest(String game_id, String type, String json)
+	
+	public boolean HttpRequestManager(String type, String json)
 	{
-//		String baseurlFormat = "";
-//		if (type.equals(CommonConstants.RECEIVE_REQUEST)){
-//			receiveRequest(game_id, json, HttpRequestType.PUT);
-//		}
+		boolean valid = false;
+		String baseurlFormat = "";
+		if (type.equals(CommonConstants.AUTHENTICATE_USER_SVC)){
+			valid = aunthenticateUserRequest(json, HttpRequestType.POST);
+		}
 //		else if (type.equals(CommonConstants.FIRE_REQUEST)){
 //			fireRequest(game_id, json, HttpRequestType.PUT);
 //		}
 //		else if (type.equals(CommonConstants.STATUS_REQUEST)) {
 //			statusGameRequest(game_id, json, HttpRequestType.GET);
 //		}
+		logger.debug("valid in HttpRequestManager(String type, String json): " + valid);
+		
+		return valid;
 	}
 	
-	public HttpRequest(String type, String json)
+	public boolean aunthenticateUserRequest(String json, HttpRequestType type)
 	{
-//		String baseurlFormat = "";
-//		if (type.equals(CommonConstants.NEWGAME_REQUEST)){
-//			newGameRequest(json, HttpRequestType.POST);
-//		}
-	}
-	
-	public void receiveRequest(String game_id, String json, HttpRequestType type)
-	{
+		boolean valid = false;
 		String baseurlFormat = "";
-		baseurlFormat = "/protocol/game/%s";
-//			baseurlFormat = "/user/game/%s/fire";
+		baseurlFormat = "/auth";
 		
 		this.json = json;
-		
-		urlpath = String.format(baseurlFormat, game_id.trim());
-		
-//		baseurl = Environment.getProperty("XLSpaceShip.RequestSvc");
-		baseurl = CommonConstants.CUSTOMER_SERVICE_AGENT_SVC;
-		
-		if(baseurl != null) {
-			this.getRequest(type);	
-		}
-	}
-	
-	public void fireRequest(String game_id, String json, HttpRequestType type)
-	{
-		String baseurlFormat = "";
-		baseurlFormat = "/user/game/%s/fire";
-		
-		this.json = json;
-		
-		urlpath = String.format(baseurlFormat, game_id.trim());
-		
-//		baseurl = Environment.getProperty("XLSpaceShip.RequestSvc");
-		baseurl = CommonConstants.CUSTOMER_SERVICE_AGENT_SVC;
-		
-		if(baseurl != null) {
-			this.getRequest(type);	
-		}
-	}
-	
-	public void newGameRequest(String json, HttpRequestType type)
-	{
-		String baseurlFormat = "";
-		baseurlFormat = "/protocol/game/new";
 		
 		urlpath = String.format(baseurlFormat);
-		this.json = json;
 		
-//		baseurl = Environment.getProperty("XLSpaceShip.RequestSvc");
+//		baseurl = Environment.getProperty("AirTicket.AuthenticateSvc");
+//		baseurl = CommonConstants.AUTHENTICATE_USER_SVC;
+		
+//		baseurl = Environment.getProperty("AirTicket.CustomerServiceAgentSvc");
 		baseurl = CommonConstants.CUSTOMER_SERVICE_AGENT_SVC;
 		
 		if(baseurl != null) {
-			this.getRequest(type);	
+//			return this.getRequest(type);	
+			valid = this.getRequest(type);	
 		}
-	}
+		logger.debug("valid in aunthenticateUserRequest(String json, HttpRequestType type): " + valid);
+		return valid;
+}
 	
-	public void statusGameRequest(String game_id, String json, HttpRequestType type)
+	public boolean getRequest(HttpRequestType type)
 	{
-		String baseurlFormat = "";
-		baseurlFormat = "/user/game/%s";
-		
-		this.json = json;
-		
-		urlpath = String.format(baseurlFormat, game_id.trim());
-		
-//		baseurl = Environment.getProperty("XLSpaceShip.RequestSvc");
-		baseurl = CommonConstants.CUSTOMER_SERVICE_AGENT_SVC;
-		
-		if(baseurl != null) {
-			this.getRequest(type);	
-		}
-	}
-	
-	public void getRequest(HttpRequestType type)
-	{
+		boolean valid = false;
 		switch (type) {
 		case GET:
-			HttpRequestUtil.makeRequest(baseurl + urlpath, querystring, HttpRequestType.GET, this);
+			valid = HttpRequestUtil.makeRequest(baseurl + urlpath, querystring, HttpRequestType.GET, this);
 			break;
 		case POST:
-			HttpRequestUtil.makeRequest(baseurl + urlpath, json, HttpRequestType.POST, this);
+			valid = HttpRequestUtil.makeRequest(baseurl + urlpath, json, HttpRequestType.POST, this);
 			break;
 		case PUT:
-			HttpRequestUtil.makeRequest(baseurl + urlpath, json, HttpRequestType.PUT, this);
+			valid = HttpRequestUtil.makeRequest(baseurl + urlpath, json, HttpRequestType.PUT, this);
 			break;
 		case DELETE:
-			HttpRequestUtil.makeRequest(baseurl + urlpath, querystring, HttpRequestType.DELETE, this);
+			valid = HttpRequestUtil.makeRequest(baseurl + urlpath, querystring, HttpRequestType.DELETE, this);
 			break;
 		default:
 			break;
 		}
+		
+		logger.debug("valid in getRequest(HttpRequestType type) before WorkRequestData(this.response) : " + valid);
+
 		if(!this.hasError())
 		{
 			// no errors, lets do some work and populate this object
 			wrdata = new WorkRequestData(this.response);
+			valid = true;
 		}
 		else
 		{
 			logger.error("unable to get work response : " + baseurl);
+			valid = false;
 		}
+
+		logger.debug("valid in getRequest(HttpRequestType type) after WorkRequestData(this.response) : " + valid);
+		return valid;
 	}
 	
 	/**
@@ -215,7 +176,6 @@ public class HttpRequest implements HttpRequestCallback {
 
 	/**
 	 * use gson object to serialize one of these to life
-	 * @author hp-employee
 	 *
 	 */
 	public class WorkRequestData {
@@ -229,33 +189,10 @@ public class HttpRequest implements HttpRequestCallback {
 		
 		public WorkRequestData(String stream)
 		{
-			// for simple responses, not for xl spaceship complex responses 
-//			WorkRequestPrimative wrp = new WorkRequestPrimative();
-//			Gson gson = new Gson();
-//			wrp = gson.fromJson(stream, WorkRequestPrimative.class);
+			// for simple responses only not for complex responses 
 			response = new HashMap<>();
 			Type type = new TypeToken<Map<String, Map<String, String>>>(){}.getType();
 			gson.toJson(response, type);
-//			init(wrp);
-		}
-		
-		private void init(WorkRequestPrimative wrp)
-		{
-			
-//			ArrayList<String> salvoShots = new ArrayList<String>();
-//			if(wrp.salvo != null)
-//			{
-//				if(Collections.addAll(salvoShots, wrp.salvo))
-//					setSalvoShots(salvoShots);
-//				else
-//					setSalvoShots(null);
-//			}
-//			else
-//			{
-//				setSalvoShots(null);
-//			}
-
-//			setInitialized(true);
 		}
 		
 		public Map<String, Map<String, String>> getResponse() {
@@ -264,14 +201,6 @@ public class HttpRequest implements HttpRequestCallback {
 
 		public void setResponse(Map<String, Map<String, String>> response) {
 			this.response = response;
-		}
-
-		public ArrayList<String> getSalvoShots()
-		{
-			return salvo;
-		}
-		public void setSalvoShots(ArrayList<String> salvoShots) {
-			this.salvo = salvoShots;
 		}
 
 		public boolean isInitialized() {

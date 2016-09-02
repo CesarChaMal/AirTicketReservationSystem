@@ -9,4 +9,5 @@ public class CommonConstants {
 	public static String CUSTOMER_SERVICE_AGENT_SVC = "";	
     public static String JAVAPROCESS_HEAPMEMORY = "128M";
     public static String JAVAPROCESS_NONHEAPMEMORY = "90M";
+	public static String AUTHENTICATE_USER_SVC = "";	
 }

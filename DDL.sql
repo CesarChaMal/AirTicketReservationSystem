@@ -18,13 +18,35 @@ CREATE TABLE User (
 ALTER TABLE User
 	MODIFY COLUMN password VARCHAR(60);
 
+ALTER TABLE User
+	ADD CONSTRAINT username_unique UNIQUE KEY User(username);
+
+ALTER TABLE User
+	ADD COLUMN social_network_id int(8) NULL;
+
+ALTER TABLE User
+	MODIFY COLUMN social_network_id int(4);
+
+-- DROP TABLE IF EXISTS SocialNetWork;
+CREATE TABLE SocialNetWork (
+	social_network_id int(4) NOT NULL auto_increment,
+	name varchar(60) NOT NULL,  
+    active binary(1) NOT NULL default '1',
+	CONSTRAINT socialNetwork_pkey PRIMARY KEY (social_network_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+-- ALTER TABLE User
+--    DROP FOREIGN KEY userSocialNetwork_fkey
+--	ADD CONSTRAINT userSocialNetwork_fkey FOREIGN KEY (social_network_id) REFERENCES SocialNetWork(social_network_id) ON DELETE CASCADE ON UPDATE CASCADE;
+--	ADD CONSTRAINT userSocialNetwork_fkey FOREIGN KEY (social_network_id) REFERENCES SocialNetWork(social_network_id) ON UPDATE no action ON DELETE no action;
+
 -- DROP TABLE IF EXISTS Roles;
 CREATE TABLE Roles (
 	rol_id int(4) NOT NULL auto_increment,
 	name varchar(60) NOT NULL,  
     active binary(1) NOT NULL default '1',
 	CONSTRAINT rol_pkey PRIMARY KEY (rol_id)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 ALTER TABLE User
 	ADD CONSTRAINT userRol_fkey FOREIGN KEY (rol_id) REFERENCES Roles(rol_id) ON DELETE CASCADE ON UPDATE CASCADE;

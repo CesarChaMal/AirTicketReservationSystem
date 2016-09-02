@@ -54,6 +54,9 @@ public class Bootstrap implements InitializingBean,
     @Value("${${airticket.env}.AirTicket.CustomerServiceAgentSvc}")
     private String customerServiceAgentSvc;
 	
+    @Value("${${airticket.env}.AirTicket.AuthenticateSvc}")
+    private String authenticateSvc;
+    
 	@Value("${JavaProcessBuilder.HeapMemory}")
 	private String JavaProcessHeapMemory;
 	
@@ -75,6 +78,7 @@ public class Bootstrap implements InitializingBean,
         CommonConstants.SCHEMA_TYPE = schemaType;
         
         CommonConstants.CUSTOMER_SERVICE_AGENT_SVC = customerServiceAgentSvc;
+        CommonConstants.AUTHENTICATE_USER_SVC = authenticateSvc;
         
         CommonConstants.JAVAPROCESS_HEAPMEMORY = JavaProcessHeapMemory;
         CommonConstants.JAVAPROCESS_NONHEAPMEMORY = JavaProcessNonHeapMemory;
@@ -88,8 +92,8 @@ public class Bootstrap implements InitializingBean,
         log.info("App properties set.");
         
         log.info(appProperties.getProperty("airticket.env"));
-        log.info(appProperties.getProperty("AirTicket.WelcomeCtrl"));
-        log.debug(appProperties.getProperty("AirTicket.WelcomeCtrl"));
+        log.info(appProperties.getProperty("AirTicket.CustomerServiceAgentSvc"));
+        log.debug(appProperties.getProperty("AirTicket.CustomerServiceAgentSvc"));
         
         log.info("Bootstrapped Air Ticket Reservation System Java...");
     }

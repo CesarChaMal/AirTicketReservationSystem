@@ -22,7 +22,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 		String uri = request.getRequestURI();
 		
-		if(!uri.endsWith("login.do") && !uri.endsWith("logout.do"))
+		if(!uri.endsWith("/login.do") && !uri.endsWith("/logout.do"))
+//		if(uri.endsWith("/login.do") || uri.endsWith("/logout.do"))
 		{
 //			User userData = (User) request.getSession().getAttribute("LOGGEDIN_USER");
 			String userData = (String) request.getSession().getAttribute("LOGGEDIN_USER");

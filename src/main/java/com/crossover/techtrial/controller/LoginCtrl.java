@@ -68,6 +68,7 @@ public class LoginCtrl {
 		String password = request.getParameter("password");
 
 		boolean isValidUser = service.validateUser(name, password);
+		log.debug("isValidUser: " + isValidUser);
 
 		if (isValidUser) {
 			request.getSession().setAttribute("LOGGEDIN_USER", name);

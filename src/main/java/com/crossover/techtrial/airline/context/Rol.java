@@ -1,9 +1,13 @@
 package com.crossover.techtrial.airline.context;
 
-public abstract class Rol {
+public class Rol {
  
 	private int id;
 	private String name;
+	
+	public Rol(int id) {
+		this.id = id;
+	}
 	 
 }
  

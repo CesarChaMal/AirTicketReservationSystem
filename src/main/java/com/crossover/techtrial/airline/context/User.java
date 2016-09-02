@@ -20,9 +20,9 @@ public class User {
 
 	public static class Builder {
 		
-		private String name;
 		private final String username;
 		private final String password;
+		private String name;
 		private SocialNetwork socialNetwork;
 		private Rol rol;
 
@@ -51,25 +51,25 @@ public class User {
 		}
 	}
 		
+	public String getName() {
+		return this.name;
+	}
+	 
 	public String getUserName() {
-		return null;
+		return this.username;
 	}
-	 
+	
 	public String getPassword() {
-		return null;
+		return this.password;
 	}
 	 
-	public void setName(String name) {
-	 
+	public SocialNetwork getSocialNetwork() {
+		return this.socialNetwork;
 	}
-	 
-	public void setUserName(String userName) {
-	 
+	
+	public Rol getRol() {
+		return this.rol;
 	}
-	 
-	public void setPassword(String password) {
-	 
-	}
-	 
+
 }
  

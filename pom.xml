@@ -114,11 +114,12 @@
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.3</version>
 		</dependency>
+<!--  	
  		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 		</dependency>
-<!--  	
+ -->	
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -129,7 +130,6 @@
 		      </exclusion>
 		    </exclusions> 
 		</dependency>
- -->	
  	
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -331,8 +331,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
+		<dependency>
+		  <groupId>org.slf4j</groupId>
+		  <artifactId>slf4j-log4j12</artifactId>
+		  <version>1.7.5</version>
+		</dependency>
 -->		
- 	</dependencies>
+	</dependencies>
 
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>

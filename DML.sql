@@ -10,3 +10,8 @@ INSERT INTO user(name, username, password, rol_id)
 UNION ALL
 	SELECT 'Cesar Manuel', 'user', 'ge9aFH4nd5sxpkctQZ7apA==', 1
 
+INSERT INTO SocialNetWork(name)
+	SELECT 'Google'
+UNION ALL
+	SELECT 'Twitter';
+

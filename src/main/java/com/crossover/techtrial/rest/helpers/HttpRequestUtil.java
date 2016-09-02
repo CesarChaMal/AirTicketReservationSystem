@@ -142,8 +142,11 @@ public class HttpRequestUtil {
  * @param method - see HttpRequestType , used for specifying the type of http request
  * @param httpRequestCallback - call back function that implements json/gson wrapper, such as a request object.
  */
-    public static void makeRequest(String url, String Data, HttpRequestType method, final HttpRequestCallback httpRequestCallback) {
+    public static boolean makeRequest(String url, String Data, HttpRequestType method, final HttpRequestCallback httpRequestCallback) {
+    	
     	logger.debug("calling makeRequest for url : " + url);
+    	
+    	boolean valid = false;
         try {
         	Client reqClient = null;
         	if(url.indexOf("https") >= 0)
@@ -187,10 +190,12 @@ public class HttpRequestUtil {
         			}
         			logger.debug("webResource query");
         			httpRequestCallback.ResponseRecieved(webResource.queryParams(queryParams).get(String.class));
+        			valid = true;
         		}
         		else
         		{
         			httpRequestCallback.ResponseRecieved(webResource.get(String.class));
+        			valid = true;
         		}
         	} 
         	else if (method == HttpRequestType.PUT)
@@ -211,10 +216,12 @@ public class HttpRequestUtil {
         			{
         				requesterr = "Problem with POST response (" + resp.getStatus()+ ") : " + resp.getEntity(String.class);
         				httpRequestCallback.Error(requesterr, new Exception("invalid response : " + resp.getStatus()));
+            			valid = false;
         			}
         			else
         			{
         				httpRequestCallback.ResponseRecieved(resp.getEntity(String.class));
+            			valid = true;
         			}
         			
         		}
@@ -223,7 +230,7 @@ public class HttpRequestUtil {
         			String errmsg = "No post data was provided, this must be provided as comma seperated list of name value paris sperated by = signs";
         			logger.error(errmsg);
         			requesterr = errmsg;
-        			
+        			valid = false;
         		}
         	}
         	else if (method == HttpRequestType.POST)
@@ -258,10 +265,12 @@ public class HttpRequestUtil {
         			{
         				requesterr = "Problem with POST response (" + resp.getStatus()+ ") : " + resp.getEntity(String.class);
         				httpRequestCallback.Error(requesterr, new Exception("invalid response : " + resp.getStatus()));
+            			valid = false;
         			}
         			else
         			{
         				httpRequestCallback.ResponseRecieved(resp.getEntity(String.class));
+            			valid = true;
         			}
         			
         		}
@@ -270,7 +279,7 @@ public class HttpRequestUtil {
         			String errmsg = "No post data was provided, this must be provided as comma seperated list of name value paris sperated by = signs";
         			logger.error(errmsg);
         			requesterr = errmsg;
-        			
+        			valid = false;
         		}
         		
         	}
@@ -287,20 +296,22 @@ public class HttpRequestUtil {
         		 * 
         		 * 
         		 */
+    			valid = false;
         	}
         	else
         	{
         		logger.error("not supported");
         		requesterr = "havn't implemented";
+    			valid = false;
         	}
       
         } catch (Exception e) {
         	logger.debug("Exception in makeRequest");
         	logger.debug(e);
         	httpRequestCallback.Error(requesterr,e);
-
+			valid = false;
         }
-
+        return valid;
     }
 
 }

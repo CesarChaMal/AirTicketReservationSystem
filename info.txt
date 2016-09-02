@@ -30,6 +30,10 @@ mvn spring-boot:run -Dlog.dir="C:/springsource/workspaces/ws_air_ticket_reservat
 
 Spring Boot
 
+POST
+Content-Type: application/json
+http://localhost:8080/airticket/auth
+{"username": "admin","password": "pass"}
 
 
 Spring MVC

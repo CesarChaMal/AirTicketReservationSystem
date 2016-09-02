@@ -1,9 +1,9 @@
 package com.crossover.techtrial.airline.context;
 
-public class Google extends SocialNetwork {
+public class Google implements AuthenticationStrategy {
 
 	@Override
-	public void authenticate() {
+	public void authenticate(String username, String password) {
 		// TODO Auto-generated method stub
 		
 	}
