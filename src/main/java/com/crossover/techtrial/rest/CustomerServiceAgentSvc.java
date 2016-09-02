@@ -66,8 +66,11 @@ public class CustomerServiceAgentSvc implements CustomerServiceAgentInterface {
 			User user = gson.fromJson(payload, User.class);
 			
 			boolean valid = authenticateUser(user);
-			res.put("ok", Boolean.toString(valid));
+			log.debug("authenticateUser(User user) : " + valid);
 
+			res.put("ok", Boolean.toString(valid));
+			
+			log.debug("authenticateUser(@RequestBody String payload, HttpServletRequest request, HttpServletResponse response) : " + valid);
 			response.setStatus(HttpServletResponse.SC_OK);
 		} catch (Exception e) {
 			log.error(e);
@@ -88,6 +91,7 @@ public class CustomerServiceAgentSvc implements CustomerServiceAgentInterface {
 
 	@Override
 	public boolean authenticateUser(User user) {
+		boolean valid = false;
 //		UserDao userDao = new UserDao(user);
 		UserDao userDao = new UserDao(ctx.getBean(BasicDataSource.class));
 
@@ -95,9 +99,10 @@ public class CustomerServiceAgentSvc implements CustomerServiceAgentInterface {
 		log.debug("userDao.findByUserNamePassword(user.getUserName(),user.getPassword()) : " + user);
 		
 		if (user != null)
-			return true;
+			valid = true;
 			
-		return false;
+		log.debug("authenticateUser(User user) : " + valid);
+		return valid;
 	}
 	 
 }

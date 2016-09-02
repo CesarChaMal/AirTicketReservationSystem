@@ -1,24 +1,16 @@
 package com.crossover.techtrial.rest.helpers;
 
 import java.lang.reflect.Type;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.crossover.techtrial.rest.helpers.HttpRequestUtil.HttpRequestCallback;
 import com.crossover.techtrial.util.CommonConstants;
-import com.crossover.techtrial.util.Environment;
 import com.crossover.techtrial.util.HttpRequestType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
 public class HttpRequest implements HttpRequestCallback {
@@ -103,7 +95,30 @@ public class HttpRequest implements HttpRequestCallback {
 		{
 			// no errors, lets do some work and populate this object
 			wrdata = new WorkRequestData(this.response);
-			valid = true;
+			logger.debug("WorkRequestData(this.response) : " + wrdata.response);
+			
+			WorkRequestPrimative res = new WorkRequestPrimative();
+
+			res = wrdata.getResponse();
+			logger.debug("res: " + res);
+			 
+			if (res!= null) {
+				if (res.ok != null) {
+					
+					logger.debug("res.ok: " + res.ok);
+
+					if (res.ok.equals("true")){
+						valid = true;
+					} else if (res.ok.equals("false")){
+						valid = false;
+					}
+					
+				} else {
+					valid = false;
+				}
+			} else {
+				valid = false;
+			}
 		}
 		else
 		{
@@ -180,26 +195,32 @@ public class HttpRequest implements HttpRequestCallback {
 	 */
 	public class WorkRequestData {
 
-		private ArrayList<String> salvo = null;
-		
-		private Map<String, Map<String, String>> response = null;
-
+		private WorkRequestPrimative response = null;
 
 		private boolean isInitialized = false;
 		
 		public WorkRequestData(String stream)
 		{
 			// for simple responses only not for complex responses 
-			response = new HashMap<>();
-			Type type = new TypeToken<Map<String, Map<String, String>>>(){}.getType();
-			gson.toJson(response, type);
+//			response = new HashMap<>();
+			
+			WorkRequestPrimative wrp = new WorkRequestPrimative();
+			Gson gson = new Gson();
+			wrp = gson.fromJson(stream, WorkRequestPrimative.class);
+
+			logger.debug("Steam: " + stream);
+			
+			logger.debug("wrp: " + wrp);
+			logger.debug("wrp: " + wrp.ok);
+			
+			setResponse(wrp);
 		}
 		
-		public Map<String, Map<String, String>> getResponse() {
+		public WorkRequestPrimative getResponse() {
 			return response;
 		}
 
-		public void setResponse(Map<String, Map<String, String>> response) {
+		public void setResponse(WorkRequestPrimative response) {
 			this.response = response;
 		}
 
@@ -210,6 +231,6 @@ public class HttpRequest implements HttpRequestCallback {
 		public void setInitialized(boolean isInitialized) {
 			this.isInitialized = isInitialized;
 		}
-
 	}
+
 }
