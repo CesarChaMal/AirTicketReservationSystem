@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.crossover.techtrial.util.EncryptionDecryption;
+
 @Configuration
 public class MySQLConfig {
     private static final Logger log = Logger.getLogger(MySQLConfig.class);
@@ -43,11 +45,11 @@ public class MySQLConfig {
         ds.setDriverClassName(mysqlDriver);
         ds.setUrl(mysqlURL);
         ds.setUsername(mysqlUsername);
-//        String passEnc= sqlServerPassword;
-//        EncryptionDecryption.getInstance();
-//        ds.setPassword(EncryptionDecryption.decrypt2(passEnc));
+        String passEnc= sqlServerPassword;
+        EncryptionDecryption.getInstance();
+        ds.setPassword(EncryptionDecryption.decrypt2(passEnc));
 //        ds.setPassword(sqlServerPassword);
-        ds.setPassword("pass");
+//        ds.setPassword("pass");
         log.debug(mysqlURL);
 
         // DBCP specific settings
