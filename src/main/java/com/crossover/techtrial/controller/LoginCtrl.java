@@ -30,7 +30,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 @Controller
-@RequestMapping(value = "/login.do")
+@RequestMapping(value = "/")
 public class LoginCtrl {
 
 	private static final Logger log = Logger.getLogger(LoginCtrl.class);
