@@ -48,3 +48,6 @@ GET
 Content-Type: text/html
 http://localhost:8080/login.do
 
+# Maven Report
+
+http://localhost:8080/maven-report/index.html

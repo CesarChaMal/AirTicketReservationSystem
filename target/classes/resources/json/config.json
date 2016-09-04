@@ -1,0 +1,13 @@
+{
+	"webhost" : "localhost",
+	"webhostPortHttp" : "3000",
+	"webhostPortHttps" : "4443",
+	"mongo" : "localhost",
+	"mongoPort" : "27017",
+	"mongoDB" : "dev-ops",
+	"timeout" : "2000",
+	"interval" : "1000",
+	"tempDir" : "uploads/",
+	"destinationDir" : "public/angular-app/images/"
+}
+	

@@ -2,6 +2,7 @@ package com.crossover.techtrial;
 
 import org.apache.catalina.connector.Connector;
 import org.apache.log4j.Logger;
+import org.hibernate.validator.internal.engine.resolver.JPATraversableResolver;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -16,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan
 //@EnableAutoConfiguration
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class, JPATraversableResolver.class})
 public class Application {
 
 	private static final Logger log = Logger.getLogger(Application.class);

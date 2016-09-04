@@ -11,16 +11,16 @@
 			<tr>
 				<th>Description</th>
 				<th>Target Date</th>
-				<th>Actions</th>
+				<th>Actions</th> 
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${flights}" var="f">
+			<c:forEach items="${flights}" var="flight" varStatus="item">
 				<tr>
-					<td>${f.name}</td>
-					<td>${f.destination}</td>
-					<td>&nbsp;&nbsp;<a class="btn btn-danger" href="/delete-flight.do?flight=${f.name}&destination=${f.destination}">Delete</a></td>
+					<td id="${item.index}">${flight.name}</td>
+					<td>${flight.destination}</td>
+					<td>&nbsp;&nbsp;<a class="btn btn-danger" href="/delete-flight.do?flight={f.name}&destination={f.destination}">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

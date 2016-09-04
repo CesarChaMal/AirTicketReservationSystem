@@ -1,0 +1,106 @@
+<section id="hero" class="text-center" style="padding-top:30px;padding-bottom:30px;">
+  <div class="box">
+    <div class="wrapper">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="loader" ng-show="loadingTracker.active()">
+            Loading...
+          </div>                  
+          <p>
+          <ul id="elements" class="main" ng-controller="ViewJqueryCtrl" bn-over="li | checkType(element.id)" bn-out="li | uncheckType(element.id)" 
+          bn-click="li | openlink(element.id)" bn-enter="li | checkImg(element.id)" bn-leave="li | uncheckImg(element.id)">
+             <li id="{{element.id}}" class="{{element.class}}" ng-repeat="element in layout">{{element.shortName}}<span>{{element.name}}</span></li>
+          </ul>
+  
+          <div class="legend legendPeriodicTable">
+            <a href="https://www.hpe.com/us/en/home.html" ng-mouseover="checkHP($event)" ng-mouseout="uncheckHP($event)" class="pull-right animated fadeIn type-hpe"><img src="images/logo.png" height="20"></a>
+            <h4 style="margin:0px 0px 15px; text-align:left; font-weight:700; color:#333; text-transform:uppercase;">Periodic Table of DevOps Tools <small>(R&#38;D IT)</small></h4>
+            <hr style="margin:6px 0px 6px 0px" />
+
+            <!-- Jquery Event Delegation -->
+            <ul class="list-1" ng-controller="ViewJqueryCtrl" bn-over="li | checkModel(model.id)" bn-out="li | uncheckType(model.id)" 
+              bn-click="li | openlinkModel(model.id)">
+              <li id="{{model.id}}" data-url="{{model.url}}" class="model-{{model.id}}" ng-repeat="model in models"><span>{{model.shortName}}</span>{{model.name}}</li>
+            </ul>
+            <ul class="list-2" ng-controller="ViewJqueryCtrl" bn-over="li | checkType(type.id)" bn-out="li | uncheckType(type.id)" 
+              bn-click="li | openlinkType(type.id)">
+              <li id="{{type.id}}" data-url="{{type.url}}" class="type-{{type.id}}" ng-repeat="type in types">{{type.name}} <i class="fa fa-external-link pull-right tooltipit" title="{{type.title}}" data-original-title="{{type.title}}"></i></li>  
+            </ul>
+
+          </div>
+
+          <div id="action-box">
+            <div id="logo-box">
+              <!-- <img src="images/blank.jpg" class="img-responsive" /> -->
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    
+      <!-- Jquery Event Delegation -->
+      <!-- 
+      <div class="row">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-4" style="padding:10px 10px 10px 40px">
+          <p><a id='submitAddElement' ng-controller="ViewJqueryCtrl" class="btn btn-info btn-lg btn-group-justified" ng-click="submitAddElement()"><i class="fa fa-plus"></i>&nbsp;Add a Tool</a>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-4" style="padding:10px 10px 10px 40px">
+          <p><a id='submitRemoveElement' ng-controller="ViewJqueryCtrl" class="btn btn-warning btn-lg btn-group-justified" ng-click="submitRemoveElement()"><i class="fa fa-minus"></i>&nbsp;Remove a Tool</a>
+        </div>
+      </div>
+      -->
+      
+      <!-- Jquery Event Delegation -->
+      <!--
+      <div class="row">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-4" style="padding:10px 10px 10px 40px">
+          <p><a id='submitCreateElement' ng-controller="ViewJqueryCtrl" class="btn btn-success btn-lg btn-group-justified" ng-click="submitCreateElement()"><i class="fa fa-floppy-o"></i>&nbsp;Create an Element</a>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-4" style="padding:10px 10px 10px 40px">
+          <p><a id='submitDeleteElement' ng-controller="ViewJqueryCtrl" class="btn btn-danger btn-lg btn-group-justified" ng-click="submitDeleteElement()"><i class="fa fa-times"></i>&nbsp;Delete an Element</a>
+        </div>
+      </div>
+      -->
+      
+    </div>
+
+  </div>
+</section>
+
+<!-- 
+<div id="dialog-modal" title="Basic modal dialog" style="display: none;">
+-->
+<div id="dialog-modal" title="Dev-Ops Elements" ng-hide="{{hideModal}}" class="ng-hide">
+  <section style="padding:60px 0px;">
+    <div id="element-info">
+      <div class="row">
+        <div class="col-lg-4">
+          <a target="_blank" href="{{element.product-url}}"><img class="img-responsive" src="../{{element.image}}"></a>
+        </div>
+        <div class="col-lg-8">
+          <div style="margin-top:25px;" class="pull-right">
+          </div>
+          <h1>{{element.name}}</h1>
+          <span class="links">
+            <a target="_blank" href="{{element.product-url}}">Website</a>
+            <span class="glyphicon glyphicon-minus"></span>
+            <a target="_blank" href="{{element.wikepedia-url}}">Wikipedia</a>
+          </span> 
+          <p>{{element.description}}</p>
+        </div>
+      </div>
+    </div>
+  </section>  
+</div>
+
+<div id="dialog-modal-models" title="Dev-Ops Models" ng-hide="{{hideModal}}" class="ng-hide">
+  <div id="models-info">
+  </div>
+</div>
+
+<div id="dialog-modal-types" title="Dev-Ops Types" ng-hide="{{hideModal}}" class="ng-hide">
+  <div id="types-info">
+  </div>
+</div>
+
+

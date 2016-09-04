@@ -1,0 +1,12 @@
+com.crossover.techtrial
+com.crossover.techtrial.airline.context
+com.crossover.techtrial.conf
+com.crossover.techtrial.controller
+com.crossover.techtrial.dao
+com.crossover.techtrial.dto
+com.crossover.techtrial.execs
+com.crossover.techtrial.filter
+com.crossover.techtrial.interceptor
+com.crossover.techtrial.rest
+com.crossover.techtrial.rest.helpers
+com.crossover.techtrial.util
