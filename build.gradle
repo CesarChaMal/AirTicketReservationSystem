@@ -114,7 +114,8 @@ dependencies {
 	compile group: 'org.webjars', name: 'font-awesome', version: '4.0.3'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.0.1.RELEASE'
 	compile group: 'org.springframework.security', name: 'spring-security-test', version: '4.0.3.RELEASE'
-	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: 2.1.2.RELEASE'
+	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '2.1.2.RELEASE'
+	compile group: 'org.webjars.bower', name: 'angular-promise-tracker', version: '2.1.0'
 	runtime("javax.servlet:jstl:1.2")
     runtime("org.apache.tomcat.embed:tomcat-embed-jasper")
     testCompile("junit:junit")

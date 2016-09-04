@@ -1,0 +1,22 @@
+Dear Cesar Francisco,
+
+Thank you for taking the time to apply for the Java Chief Software Architect position at Crossover.
+
+The application process has been extremely competitive, and we greatly appreciate your contribution to that competition. 
+After carefully considering your application, we are sorry to inform you that your Project Evaluation did not score high enough 
+to proceed. You can see our evaluator's comments at the end of this email.
+
+Although we are unable to continue with your application, we want to thank your for your interest in Crossover and for the 
+valuable time and effort you have invested in this process.
+
+We wish you the best in your professional endeavors!
+
+"Some good points in your submission:
+- Specs - Implemented framework for staff auth, passive layers for basic functions;"
+"Some issues found in your submission:
+- Code - No tests are written, were mandatory; Large methods; 
+- Specs - Not implemented framework/integrations for front end spa, pdf gen, mail alerts, scheduling/message queuing, social auth,
+ any functional chain, payments, check-ins;" 
+
+Thank you,
+The Crossover Team

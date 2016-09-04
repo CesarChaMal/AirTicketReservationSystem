@@ -1,13 +1,9 @@
 // Declare app level module which depends on views, and components
-angular.module('dev-ops', [
+angular.module('air-ticket', [
 	'ngRoute',
-	'ngDialog',
-	'dev-ops.view',
-	'dev-ops.view1',
-	'dev-ops.view2',
-	'dev-ops.view3',
-	'dev-ops.view4'
+	'air-ticket.login',
+	'air-ticket.list-fligths'
 ]).
 config(['$routeProvider', function($routeProvider) {
-	$routeProvider.otherwise({redirectTo: '/view'});
+	$routeProvider.otherwise({redirectTo: '/login'});
 }]);

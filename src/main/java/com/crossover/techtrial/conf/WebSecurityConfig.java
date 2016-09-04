@@ -12,29 +12,38 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-//@EnableWebSecurity
-//public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-public class WebSecurityConfig {
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//	@Autowired
-//	private UserDetailsService userDetailsService;
-//
-//	@Override
-//	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests().antMatchers("/home", "/", "/css/**", "/js/**", "/images/**", "/public/rest/**")
-//				.permitAll().antMatchers("/publisher/**").hasAuthority("PUBLISHER").anyRequest().fullyAuthenticated()
-//				.and().formLogin().loginPage("/login").failureUrl("/login?error").usernameParameter("username")
-//				.permitAll().and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll().and()
-//				.exceptionHandling().accessDeniedPage("/403").and().csrf().disable();
-//	}
-//
-//	@Autowired
-//	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-//	}
-//
-//	@Bean
-//	public PasswordEncoder passwordEncoder() {
-//		return new BCryptPasswordEncoder();
-//	}
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+        http
+        .authorizeRequests()
+//            .antMatchers("/", "/home").permitAll()
+            .antMatchers("/", "/login.do", "/logout.do", "/webjars/**", "/resources/**", "/**", "/airticket/**").permitAll()
+            .anyRequest().authenticated()
+            .and()
+        .formLogin()
+            .loginPage("/login")
+            .permitAll()
+            .and()
+        .logout()
+            .permitAll()
+            .and()
+		.exceptionHandling()
+			.accessDeniedPage("/403")
+			.and()
+			.csrf()
+			.disable();
+	}
+
+	@Autowired
+	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+		auth.inMemoryAuthentication().withUser("user").password("pass").roles("USER");
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }

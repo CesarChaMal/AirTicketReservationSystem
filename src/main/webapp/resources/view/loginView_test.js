@@ -1,10 +1,10 @@
 'use strict';
 
-describe('dev-ops.view module', function() {
+describe('air-ticket.login module', function() {
 
-  beforeEach(module('dev-ops.view'));
+  beforeEach(module('air-ticket.login'));
 
-  describe('view controller', function(){
+  describe('login controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body

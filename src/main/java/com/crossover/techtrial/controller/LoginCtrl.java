@@ -67,7 +67,7 @@ public class LoginCtrl {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		
-		return "login";
+		return "index";
 	}
 
 	@InitBinder

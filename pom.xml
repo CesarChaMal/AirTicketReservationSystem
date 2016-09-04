@@ -373,6 +373,11 @@
 		    <artifactId>font-awesome</artifactId>
 		    <version>4.0.3</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.webjars.bower</groupId>
+		    <artifactId>angular-promise-tracker</artifactId>
+		    <version>2.1.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

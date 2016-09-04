@@ -19,7 +19,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Solutions available"/>
 	<link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/webjars/font-awesome/4.0.3/css/font-awesome" rel="stylesheet">
+	<link href="/webjars/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/styles.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/formValidation.css" />"/>
 </head>
