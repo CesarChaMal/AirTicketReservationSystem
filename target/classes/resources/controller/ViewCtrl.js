@@ -1,4 +1,4 @@
-app.controller('ViewCtrl', ['$scope', '$http', '$routeParams', '$location', '$timeout', '$interval', '$httpParamSerializerJQLike', 'promiseTracker', function($scope, $http, $routeParams, $location, $timeout, $interval, $httpParamSerializerJQLike, promiseTracker){
+app.controller('ViewCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$location', '$timeout', '$interval', '$httpParamSerializerJQLike', 'promiseTracker', function($scope, $rootScope, $http, $routeParams, $location, $timeout, $interval, $httpParamSerializerJQLike, promiseTracker){
    	
 //	console.log('Angular Event Delegation test')
 
@@ -46,6 +46,17 @@ app.controller('ViewCtrl', ['$scope', '$http', '$routeParams', '$location', '$ti
 					console.log(data.ok)
 					if (data.ok == "true"){
 						console.log("login succesful")
+
+						var flights = [
+			              	{'name' : 'test1',
+			              	'destination' : 'nowhere'},
+			              	{'name' : 'test2',
+			              	'destination' : 'nowhere'}
+						];
+			
+						$rootScope.flights = flights;
+						$rootScope.app = 'Air Ticket Reservation System';
+						$rootScope.LOGGEDIN_USER = name;
 						$location.url('/list-fligths');
 					} else if (data.ok == "false"){
 						console.log("wrong login")
