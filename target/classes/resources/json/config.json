@@ -1,8 +1,0 @@
-{
-	"webhost" : "localhost",
-	"webhostPortHttp" : "8080",
-	"webhostPortHttps" : "8081",
-	"timeout" : "2000",
-	"interval" : "1000"
-}
-	
